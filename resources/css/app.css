@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.js-draggable-item.dragging {
+    opacity: 0.8;
+}
+
+.placeholder {
+    height: 40px; /* Adjust based on your item height */
+    background-color: #f0f0f0;
+    border: 2px dashed #000;
+    margin: 5px 0; /* Adjust based on your item margin */
+}
+
+

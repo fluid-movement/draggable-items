@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ItemList extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name'];
+
+    public function sortableItems()
+    {
+        return $this->hasMany(SortableItem::class);
+    }
 }

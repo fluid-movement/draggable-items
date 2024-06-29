@@ -16,8 +16,9 @@ class ItemListFactory extends Factory
      */
     public function definition(): array
     {
+        // create a new item list
         return [
-            //
+            'name' => $this->faker->name(),
         ];
     }
 }

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('sortable_items', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('position')->default(0);
+            $table->foreignId('item_list_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

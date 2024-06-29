@@ -12,4 +12,8 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::get('sortable-list/', \App\Livewire\SortableList::class)
+    ->middleware(['auth'])
+    ->name('sortable-list');
+
 require __DIR__.'/auth.php';
