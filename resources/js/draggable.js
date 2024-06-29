@@ -1,4 +1,4 @@
-document.addEventListener("livewire:navigated", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector('.container');
     let draggedElement = null;
     let placeholder = document.createElement('div');
@@ -12,6 +12,11 @@ document.addEventListener("livewire:navigated", () => {
     container.addEventListener("dragend", handleDragEnd);
 
     function handleDragStart(event) {
+        if (typeof placeholder === 'undefined') {
+            placeholder = document.createElement('div');
+            placeholder.classList.add('placeholder');
+        }
+
         if (event.target.classList.contains('js-draggable')) {
             draggedElement = event.target;
             event.dataTransfer.effectAllowed = "move";
@@ -46,10 +51,25 @@ document.addEventListener("livewire:navigated", () => {
 
     function handleDrop(event) {
         event.preventDefault();
-        if (placeholder.parentNode) {
+        if (placeholder.parentNode !== null) {
+            const parentNode = placeholder.parentNode;
             placeholder.parentNode.replaceChild(draggedElement, placeholder);
             draggedElement.style.display = 'block';
             draggedElement.classList.remove("dragging");
+
+            // Get the ID of the dropped item
+            const droppedItemId = draggedElement.getAttribute('wire:key');
+
+            // Get the ID of the list
+            const listId = parentNode.getAttribute('wire:key');
+
+            // Get the list of item IDs in their new order
+            const newItemOrder = Array.from(parentNode.children)
+                .filter(item => item !== placeholder && item.getAttribute('wire:key') !== null)
+                .map(item => item.getAttribute('wire:key'));
+
+            // Emit a Livewire event with the necessary data
+            Livewire.dispatch('itemDropped', [droppedItemId, newItemOrder, listId]);
             draggedElement = null;
         }
         removeDragOverClass();

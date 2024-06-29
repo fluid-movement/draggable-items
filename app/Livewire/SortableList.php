@@ -35,8 +35,5 @@ class SortableList extends Component
             );
             $sort++;
         }
-
-        $list = ItemList::find($listId);
-        //$list->sortableItems()->where('id', $itemId)->update(['order' => $order]);
     }
 }

@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">    <!-- Scripts -->
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/draggable.js'])
 </head>
 <body class="font-sans antialiased min-h-screen bg-gradient-to-t from-accent to bg-primary">
 <div class="mx-auto max-w-6xl">
